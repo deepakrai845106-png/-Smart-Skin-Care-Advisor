@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Skin Care Advisor - Get Personalized Skin Care Tips in USA & India</title>
+    <meta name="description" content="Free personalized skincare advice. Get facewash recommendations, daily routines & skincare tips based on your skin type, acne, and sensitivity. No image analysis, just smart suggestions.">
+    <meta name="keywords" content="facewash for oily skin, skincare routine, acne solution, skin care tips, best facewash online, personalized skincare, skin type analysis">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header with Dark Mode Toggle -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1>Smart Skin Care Advisor</h1>
+            </div>
+            <button id="darkModeToggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Get Personalized Skin Care Tips</h2>
+                <p>Answer a few simple questions about your skin and get customized skincare recommendations including the right facewash, daily routines, and things to avoid for healthier skin.</p>
+                <button class="cta-btn" id="startAnalysisBtn">Start Skin Analysis</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Skincare products and natural ingredients">
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Tool Container -->
+    <main class="container tool-container">
+        <!-- Image Upload Section -->
+        <section class="card upload-section" id="uploadSection">
+            <h3><i class="fas fa-camera"></i> Upload Your Image (Optional)</h3>
+            <p class="subtitle">Upload a clear face image for reference. Your image is not stored or analyzed by any AI.</p>
+            
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Click to upload your image</p>
+                <p class="small-text">JPG, PNG or WebP - Max 5MB</p>
+                <input type="file" id="imageUpload" accept="image/*" hidden>
+            </div>
+            
+            <div class="image-preview" id="imagePreview">
+                <img id="previewImage" src="" alt="Your uploaded image preview">
+                <button id="removeImageBtn" class="remove-btn"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <p class="disclaimer-note"><i class="fas fa-info-circle"></i> Your image is only shown as a preview. It is not stored or analyzed by any system.</p>
+        </section>
+
+        <!-- Skin Questions Form -->
+        <section class="card form-section" id="formSection">
+            <h3><i class="fas fa-question-circle"></i> Tell Us About Your Skin</h3>
+            <p class="subtitle">Answer these questions to get personalized skincare advice.</p>
+            
+            <form id="skinForm">
+                <div class="form-group">
+                    <label for="skinType">What is your skin type? *</label>
+                    <select id="skinType" required>
+                        <option value="" disabled selected>Select your skin type</option>
+                        <option value="oily">Oily</option>
+                        <option value="dry">Dry</option>
+                        <option value="normal">Normal</option>
+                        <option value="combination">Combination</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Do you have pimples or acne? *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="acne" value="yes" required>
+                            <span>Yes</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="acne" value="no">
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Do you have sensitive skin? *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="sensitive" value="yes" required>
+                            <span>Yes</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="sensitive" value="no">
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ageGroup">What is your age group? *</label>
+                    <select id="ageGroup" required>
+                        <option value="" disabled selected>Select your age group</option>
+                        <option value="under18">Under 18</option>
+                        <option value="18-25">18-25</option>
+                        <option value="26-35">26-35</option>
+                        <option value="36+">36+</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gender">Gender (Optional)</label>
+                    <select id="gender">
+                        <option value="" selected>Prefer not to say</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="secondary-btn" id="resetFormBtn">Reset Form</button>
+                    <button type="submit" class="primary-btn" id="analyzeBtn">
+                        <i class="fas fa-sparkles"></i> Get Skin Care Suggestions
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Results Section (Initially Hidden) -->
+        <section class="card result-section" id="resultSection" style="display: none;">
+            <h3><i class="fas fa-clipboard-check"></i> Your Personalized Skin Care Plan</h3>
+            <p class="subtitle">Based on your skin profile, here are our recommendations:</p>
+            
+            <div class="result-grid">
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-pump-soap"></i>
+                    </div>
+                    <h4>Recommended Facewash</h4>
+                    <p id="facewashResult">Loading...</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h4>Morning Routine</h4>
+                    <p id="morningRoutine">Loading...</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h4>Night Routine</h4>
+                    <p id="nightRoutine">Loading...</p>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-calendar-week"></i>
+                    </div>
+                    <h4>Weekly Care Tips</h4>
+                    <p id="weeklyTips">Loading...</p>
+                </div>
+            </div>
+            
+            <div class="avoid-section">
+                <h4><i class="fas fa-exclamation-triangle"></i> Things to Avoid</h4>
+                <p id="avoidResult">Loading...</p>
+            </div>
+            
+            <div class="result-actions">
+                <button class="secondary-btn" id="editResponsesBtn">Edit My Responses</button>
+                <button class="primary-btn" id="printBtn"><i class="fas fa-print"></i> Print Recommendations</button>
+            </div>
+        </section>
+
+        <!-- Disclaimer -->
+        <section class="disclaimer-card">
+            <h4><i class="fas fa-exclamation-circle"></i> Important Disclaimer</h4>
+            <p>This tool provides general skincare guidance only based on common dermatological knowledge. It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult with a dermatologist or qualified healthcare provider for personalized medical advice regarding your skin concerns.</p>
+        </section>
+
+        <!-- SEO Content Section -->
+        <section class="seo-content">
+            <h2>Best Skin Care Tips for Different Skin Types</h2>
+            <p>Finding the right skincare routine can transform your skin health. Whether you have oily, dry, combination, or normal skin, understanding your skin type is the first step toward achieving a healthy, glowing complexion.</p>
+            
+            <h3>How to Choose the Right Facewash</h3>
+            <p>Selecting the best facewash for your skin type is crucial. For <strong>oily skin</strong>, look for ingredients like salicylic acid or tea tree oil that help control excess sebum. If you have <strong>dry skin</strong>, opt for creamy, hydrating cleansers with ceramides or hyaluronic acid. <strong>Combination skin</strong> benefits from gentle, pH-balanced formulas, while <strong>normal skin</strong> can use most types but should avoid harsh surfactants.</p>
+            
+            <h3>Oily Skin vs Dry Skin Care Tips</h3>
+            <p><strong>Oily skin care</strong> focuses on balancing sebum production without stripping the skin. Use oil-free moisturizers, non-comedogenic products, and incorporate clay masks weekly. For <strong>dry skin care</strong>, prioritize hydration with humectants like glycerin, occlusives like shea butter, and avoid hot water that can further dry out your skin.</p>
+            
+            <h3>Acne Prevention Tips</h3>
+            <p>Consistent cleansing, avoiding pore-clogging ingredients, and using non-comedogenic products are key to <strong>acne prevention</strong>. Salicylic acid and benzoyl peroxide can help with existing breakouts, while retinoids (for adults) can prevent future ones. Never pick at pimples as this can lead to scarring and further infection.</p>
+            
+            <h3>Daily Skincare Routine Essentials</h3>
+            <p>A basic <strong>skincare routine</strong> should include cleansing, moisturizing, and sun protection. In the morning, apply sunscreen regardless of weather. At night, double cleanse if you wear makeup. Adjust products based on your skin's needs and remember that consistency is more important than using numerous products.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>Smart Skin Care Advisor</span>
+                </div>
+                <p class="footer-tagline">Personalized skincare guidance for healthier skin</p>
+                <p class="footer-note">Your privacy matters: We don't store any images or personal data. All analysis happens locally in your browser.</p>
+                <p class="copyright">© 2025 Smart Skin Care Advisor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
